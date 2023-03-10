@@ -7,7 +7,7 @@ def getTransitionTable(fileName):
     transitionTable=[[[] for i in range(int(linesOfFile[0])+2)] for _ in range(int(linesOfFile[1]))]
 
     for i in range(int(linesOfFile[1])):
-        transitionTable[i][1]=i
+        transitionTable[i][1]=str(i)
         transitionTable[i][0]=0
     # 0 rien, 1 = initial, 2 = final
     for initial in linesOfFile[2].split(" ")[1:]:
@@ -41,9 +41,7 @@ def isStandard(transitionTable):
 
 def standardization(transitionTable):
     if isStandard(transitionTable):return transitionTable
-
     for i in range (len(transitionTable)):
-        transitionTable[i][1]+=1
         for y in range (2,len(transitionTable[i])):
             for z in range(len(transitionTable[i][y])):
                 transitionTable[i][y][z]+=1
@@ -51,7 +49,7 @@ def standardization(transitionTable):
     #inserting new entry
     transitionTable.insert(0, [[] for _ in range(len(transitionTable[0]))])
     transitionTable[0][0]=1
-    transitionTable[0][1]=0
+    transitionTable[0][1]="i"
     
     #removing olders entrys while storing them
     oldEntry=[]
