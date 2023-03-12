@@ -1,7 +1,7 @@
 from Prerequisites import *
 
 transitionTable=getTransitionTable("./Int1-3-1.txt")
-transitionTable[3][0]=1
+#transitionTable[3][0]=1
 for line in transitionTable:
     print(line)
 # print("====================================")
@@ -14,20 +14,45 @@ for line in transitionTable:
 
 
 #print(is_deterministic(transitionTable))
+# print()
+# print("is standard ? ", is_standard(transitionTable))
+# print("is deterministic ? ", is_deterministic(transitionTable))
+# print()
+
+# print("====================================")
+# print("determinization : ")
+# print("====================================")
+
+
+
+# transitionTable=determinization(transitionTable)
+# for line in transitionTable:
+#     print(line)
+# print()
+# print("is standard ? ", is_standard(transitionTable))
+# print("is deterministic ? ", is_deterministic(transitionTable))
+
+
+# print()
+# print("====================================")
+# print("recognition : ")
+# print("====================================")
+# print()
+
+# def a(word):
+#     return "recognize" if is_word_recognize(transitionTable, word) else "not recognize"
+
+# words=["abshdnfndsjn", "z", "a", "ab", "b", "abaa", ""]
+# for word in words:
+#     print(f"the word '{word}' is {a(word)}")
+
 print()
-print("is standard ? ", is_standard(transitionTable))
-print("is deterministic ? ", is_deterministic(transitionTable))
+print("====================================")
+print("completion : ")
+print("====================================")
 print()
 
-print("====================================")
-print("determinization : ")
-print("====================================")
+transitionTable = complete(transitionTable)
 
-
-
-transitionTable=determinization(transitionTable)
 for line in transitionTable:
     print(line)
-print()
-print("is standard ? ", is_standard(transitionTable))
-print("is deterministic ? ", is_deterministic(transitionTable))

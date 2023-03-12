@@ -100,9 +100,12 @@ def fill_table(newTransitionTable, transitionTable, names, listState):
  
     if "_".join(listState) not in names : names.append("_".join(listState))
     for transition in allTransition: 
-        tmp=list(map(lambda x: str(x), transition))
-        if "_".join(tmp) not in names : names.append("_".join(tmp))
-        newLine.append([names.index("_".join(tmp))])
+        if len(transition)>0:
+            tmp=list(map(lambda x: str(x), transition))
+            if "_".join(tmp) not in names : names.append("_".join(tmp))
+            newLine.append([names.index("_".join(tmp))])
+        else:
+            newLine.append([])
 
     newTransitionTable.append(newLine)
 
@@ -137,3 +140,48 @@ def determinization(transitionTable):
     
 
     return newTransitionTable
+
+def get_index_from_letter(letter):
+    return ord(letter)-ord('a')
+
+def is_word_recognize_rec(transitionTable, word, state):
+    if word=="": 
+        if transitionTable[state][0] >=2 : return True
+        return False
+    index=2+get_index_from_letter(word[0])
+    if index <= len(transitionTable[0])-1:
+        if transitionTable[state][index][0] and transitionTable[state][index]!= state:
+            return is_word_recognize_rec(transitionTable, word[1::], transitionTable[state][index][0])
+        return False
+    else:
+        return False
+
+def is_word_recognize(transitionTable, word):
+    if not is_deterministic(transitionTable):
+        transitionTable=determinization(transitionTable)
+
+
+    entry=-1
+    for i in range(0,len(transitionTable)):
+        if transitionTable[i][0]%2==1:
+            entry=i
+    if entry==-1 :
+        print("error no entry found") 
+        return
+
+    return is_word_recognize_rec(transitionTable, word, entry)
+
+
+def complete(transitionTable):
+    if not is_deterministic(transitionTable):
+        transitionTable=determinization(transitionTable)
+
+    for i in range(len(transitionTable)):
+        for transi in range(2, len(transitionTable[i])):
+            if len(transitionTable[i][transi])==0:
+                transitionTable[i][transi]=[len(transitionTable)]
+    newLine=[-1, "p"]
+    for _ in range(2, len(transitionTable[0])):
+        newLine.append([len(transitionTable)])
+    transitionTable.append(newLine)
+    return transitionTable
