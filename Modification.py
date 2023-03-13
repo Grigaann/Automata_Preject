@@ -1,25 +1,28 @@
 from Verification import *
 
+def get_index(transitionTable, x):
+    for i in range(len(transitionTable)):
+        if transitionTable[i][1]==x : return i
+
 def fill_table(newTransitionTable, transitionTable, names, listState):
     newLine=[]
-    
     allTransition=[[] for _ in range(len(transitionTable[0])-2)]
 
+    # adding every states of every entry in listState and removing doubles
     for i in range(len(transitionTable)):
         if i in listState:
             for y in range(2,len(transitionTable[i])):
                 allTransition[y-2]+=transitionTable[i][y]
-            allTransition[y-2]=list(set(allTransition[y-2]))
-            allTransition[y-2].sort()
+                allTransition[y-2]=list(set(allTransition[y-2]))
+                allTransition[y-2].sort()
 
-    listState=list(map(lambda x: str(x), listState))
+    listState=list(map(lambda x: transitionTable[x][1], listState))
     newLine.append(0)
     newLine.append("_".join(listState))
- 
     if "_".join(listState) not in names : names.append("_".join(listState))
     for transition in allTransition: 
         if len(transition)>0:
-            tmp=list(map(lambda x: str(x), transition))
+            tmp=list(map(lambda x: transitionTable[x][1], transition))
             if "_".join(tmp) not in names : names.append("_".join(tmp))
             newLine.append([names.index("_".join(tmp))])
         else:
@@ -53,6 +56,11 @@ def standardization(transitionTable):
     for y in range(2, len(transitionTable[0])):
         transitionTable[0][y] = list(set(transitionTable[0][y]))
 
+    for i in range(len(transitionTable)):
+        for y in range(2, len(transitionTable[i])):
+            transitionTable[i][y] = list(map(lambda x: x+1, transitionTable[i][y]))
+
+
     return transitionTable
 
 
@@ -70,14 +78,15 @@ def determinization(transitionTable):
             oldEntry.append(i)
     fill_table(newTransitionTable, transitionTable, names, oldEntry)
     newTransitionTable[0][0] = 1
+    
     for name in names:
         if name not in [line[1] for line in newTransitionTable]:
-            fill_table(newTransitionTable, transitionTable, names, list(map(int, name.split("_"))))
-
+            fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), name.split("_"))))
+    
     oldExit = []
     for i in range(0, len(transitionTable)):
         if transitionTable[i][0] >= 2:
-            oldExit.append(str(i))
+            oldExit.append(transitionTable[i][1])
 
     for i in range(len(newTransitionTable)):
         for newExit in oldExit:
@@ -94,7 +103,7 @@ def completion(transitionTable):
         for transi in range(2, len(transitionTable[i])):
             if len(transitionTable[i][transi])==0:
                 transitionTable[i][transi]=[len(transitionTable)]
-    newLine=[-1, "p"]
+    newLine=[0, "p"]
     for _ in range(2, len(transitionTable[0])):
         newLine.append([len(transitionTable)])
     transitionTable.append(newLine)
