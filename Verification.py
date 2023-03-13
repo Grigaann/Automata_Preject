@@ -1,5 +1,5 @@
-from Prerequisites import *
-
+def get_index_from_letter(letter):
+    return ord(letter)-ord('a')
 
 def is_standard(transitionTable):
     entry = None

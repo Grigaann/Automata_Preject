@@ -1,5 +1,32 @@
 from Verification import *
 
+def fill_table(newTransitionTable, transitionTable, names, listState):
+    newLine=[]
+    
+    allTransition=[[] for _ in range(len(transitionTable[0])-2)]
+
+    for i in range(len(transitionTable)):
+        if i in listState:
+            for y in range(2,len(transitionTable[i])):
+                allTransition[y-2]+=transitionTable[i][y]
+            allTransition[y-2]=list(set(allTransition[y-2]))
+            allTransition[y-2].sort()
+
+    listState=list(map(lambda x: str(x), listState))
+    newLine.append(0)
+    newLine.append("_".join(listState))
+ 
+    if "_".join(listState) not in names : names.append("_".join(listState))
+    for transition in allTransition: 
+        if len(transition)>0:
+            tmp=list(map(lambda x: str(x), transition))
+            if "_".join(tmp) not in names : names.append("_".join(tmp))
+            newLine.append([names.index("_".join(tmp))])
+        else:
+            newLine.append([])
+
+    newTransitionTable.append(newLine)
+
 def standardization(transitionTable):
     if is_standard(transitionTable):
         return transitionTable
