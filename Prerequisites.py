@@ -17,8 +17,10 @@ def display(automaton):
         else:
             print("<->",end="")
 
-        # Print the transition table
-        for col in range(1,len(line)):
+        # Print the state concerned
+        print(" "*(17-len(line[1]))+line[1],end="|")
+        # Print the transitions of the state
+        for col in range(2,len(line)):
             if not line[col]:
                 print(" "*17,end="|")
             else:
