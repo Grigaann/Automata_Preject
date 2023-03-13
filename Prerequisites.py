@@ -150,7 +150,7 @@ def is_word_recognize_rec(transitionTable, word, state):
         return False
     index=2+get_index_from_letter(word[0])
     if index <= len(transitionTable[0])-1:
-        if transitionTable[state][index][0] and transitionTable[state][index]!= state:
+        if len(transitionTable[state][index])>0:
             return is_word_recognize_rec(transitionTable, word[1::], transitionTable[state][index][0])
         return False
     else:
