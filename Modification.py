@@ -1,8 +1,8 @@
 from Verification import *
-from Prerequisites import *
 
 def standardization(transitionTable):
-    if is_standard(transitionTable): return transitionTable
+    if is_standard(transitionTable):
+        return transitionTable
 
 # /!\ REMOVED THE +1 ON ALL STATES OF THE TABLE
 
@@ -34,7 +34,7 @@ def determinization(transitionTable):
     names = []
 
     # Dico format :
-    # key : state1_state2_stat3_... ascending order
+    # key : state1_state2_stat3_... ascendant order
     # value : index in the new table
 
     oldEntry = []
@@ -53,8 +53,22 @@ def determinization(transitionTable):
             oldExit.append(str(i))
 
     for i in range(len(newTransitionTable)):
-        for exit in oldExit:
-            if exit in newTransitionTable[i][1] and newTransitionTable[i][0] < 2:
+        for newExit in oldExit:
+            if newExit in newTransitionTable[i][1] and newTransitionTable[i][0] < 2:
                 newTransitionTable[i][0] += 2
 
     return newTransitionTable
+
+def completion(transitionTable):
+    if not is_deterministic(transitionTable):
+        transitionTable=determinization(transitionTable)
+
+    for i in range(len(transitionTable)):
+        for transi in range(2, len(transitionTable[i])):
+            if len(transitionTable[i][transi])==0:
+                transitionTable[i][transi]=[len(transitionTable)]
+    newLine=[-1, "p"]
+    for _ in range(2, len(transitionTable[0])):
+        newLine.append([len(transitionTable)])
+    transitionTable.append(newLine)
+    return transitionTable

@@ -1,4 +1,3 @@
-from Prerequisites import *
 from Modification import *
 
 automaton = get_FA_from_file("./Int1-3-1.txt")
@@ -31,18 +30,19 @@ print("is standard ? ", is_standard(automaton))
 print("is deterministic ? ", is_deterministic(automaton))
 
 
-# print()
-# print("====================================")
-# print("Recognition :")
-# print("====================================")
-# print()
+print()
+print("====================================")
+print("Recognition :")
+print("====================================")
+print()
 
-# def a(word):
-#     return "recognize" if is_word_recognize(automaton, word) else "not recognize"
+def a(word):
+    return "recognized" if is_word_recognized(automaton, word) else "not recognized"
 
-# words=["abshdnfndsjn", "z", "a", "ab", "b", "abaa", ""]
-# for word in words:
-#     print(f"the word '{word}' is {a(word)}")
+words=["abshdnfndsjn", "z", "a", "ab", "b", "abaa", ""]
+for word in words:
+    print(f"the word '{word}' is {a(word)}")
+
 
 print()
 print("====================================")
@@ -50,5 +50,5 @@ print("Completion :")
 print("====================================")
 print()
 
-automaton = complete(automaton)
+automaton = completion(automaton)
 display(automaton)
