@@ -1,4 +1,3 @@
-from Verification import *
 from Modification import *
 
 def display(automaton):
@@ -84,18 +83,3 @@ def is_word_recognize(transitionTable, word):
         return
 
     return is_word_recognize_rec(transitionTable, word, entry)
-
-
-def complete(transitionTable):
-    if not is_deterministic(transitionTable):
-        transitionTable=determinization(transitionTable)
-
-    for i in range(len(transitionTable)):
-        for transi in range(2, len(transitionTable[i])):
-            if len(transitionTable[i][transi])==0:
-                transitionTable[i][transi]=[len(transitionTable)]
-    newLine=[-1, "p"]
-    for _ in range(2, len(transitionTable[0])):
-        newLine.append([len(transitionTable)])
-    transitionTable.append(newLine)
-    return transitionTable
