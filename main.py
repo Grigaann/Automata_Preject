@@ -1,33 +1,31 @@
 from Prerequisites import *
+from Modification import *
 
-transitionTable=getTransitionTable("./Int1-3-1.txt")
-transitionTable[3][0]=1
-for line in transitionTable:
-    print(line)
-# print("====================================")
-# print("standardization : ")
-# print("====================================")
-# standardization(transitionTable)
-# for line in transitionTable:
-#     print(line)
-
-
-
-#print(is_deterministic(transitionTable))
+automaton = get_FA_from_file("./Int1-3-1.txt")
+#transitionTable[3][0]=1
+display(automaton)
 print()
-print("is standard ? ", is_standard(transitionTable))
-print("is deterministic ? ", is_deterministic(transitionTable))
+print("is standard ? ", is_standard(automaton))
+print("is deterministic ? ", is_deterministic(automaton))
+
 print()
+print("\n====================================")
+print("Standardization : ")
+print("====================================\n")
+automaton = standardization(automaton)
+display(automaton)
+
+print()
+print("is standard ? ", is_standard(automaton))
+print("is deterministic ? ", is_deterministic(automaton))
+print()
+
 
 print("====================================")
-print("determinization : ")
+print("Determinization : ")
 print("====================================")
+automaton = determinization(automaton)
+display(automaton)
 
-
-
-transitionTable=determinization(transitionTable)
-for line in transitionTable:
-    print(line)
-print()
-print("is standard ? ", is_standard(transitionTable))
-print("is deterministic ? ", is_deterministic(transitionTable))
+print("is standard ? ", is_standard(automaton))
+print("is deterministic ? ", is_deterministic(automaton))
