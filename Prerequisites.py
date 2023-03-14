@@ -2,6 +2,7 @@ from Modification import *
 
 def display(automaton):
     alphabet = [chr(ord('a')+k) for k in range(len(automaton[0][2:]))]
+    alphabet[-1]="€"
     # Set header row
     print("   " + " "*17,end="|")
     for letter in alphabet:
