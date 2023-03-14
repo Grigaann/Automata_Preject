@@ -2,7 +2,7 @@ from Prerequisites import *
 
 
 automaton_nb = str(int(input("Enter the number of the test you want to work with (1,2 or 3) : ")))
-t=get_FA_from_file("Int1-3-"+automaton_nb+".txt")
+t=get_FA_from_file("Automata_tests/Int1-3-"+automaton_nb+".txt")
 display(t)
 
 print("\nDeterminization =======================================")
