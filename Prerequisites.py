@@ -60,30 +60,3 @@ def get_FA_from_file(fileName):
 
 def get_index_from_letter(letter):
     return ord(letter)-ord('a')
-
-def is_word_recognize_rec(transitionTable, word, state):
-    if word=="": 
-        if transitionTable[state][0] >=2 : return True
-        return False
-    index=2+get_index_from_letter(word[0])
-    if index <= len(transitionTable[0])-1:
-        if len(transitionTable[state][index])>0:
-            return is_word_recognize_rec(transitionTable, word[1::], transitionTable[state][index][0])
-        return False
-    else:
-        return False
-
-def is_word_recognize(transitionTable, word):
-    if not is_deterministic(transitionTable):
-        transitionTable=determinization(transitionTable)
-
-
-    entry=-1
-    for i in range(0,len(transitionTable)):
-        if transitionTable[i][0]%2==1:
-            entry=i
-    if entry==-1 :
-        print("error no entry found") 
-        return
-
-    return is_word_recognize_rec(transitionTable, word, entry)
