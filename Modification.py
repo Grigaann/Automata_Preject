@@ -11,7 +11,7 @@ def fill_table(newTransitionTable, transitionTable, names, listState):
     # adding every states of every entry in listState and removing doubles
     for i in range(len(transitionTable)):
         if i in listState:
-            for y in range(2,len(transitionTable[i])):
+            for y in range(2,len(transitionTable[i])-1):
                 allTransition[y-2]+=transitionTable[i][y]
                 allTransition[y-2]=list(set(allTransition[y-2]))
                 allTransition[y-2].sort()
@@ -27,6 +27,7 @@ def fill_table(newTransitionTable, transitionTable, names, listState):
             newLine.append([names.index("_".join(tmp))])
         else:
             newLine.append([])
+
 
     newTransitionTable.append(newLine)
 
