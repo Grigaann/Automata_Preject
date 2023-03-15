@@ -44,10 +44,10 @@ def get_FA_from_file(fileName):
 
     states=[]
 
-    for initial in linesOfFile[2].split(" ")[1:]:
-        states.append(initial)
-    for initial in linesOfFile[3].split(" ")[1:]:
-        states.append(initial)
+    for state in linesOfFile[2].split(" ")[1:]:
+        if state not in states: states.append(state)
+    for state in linesOfFile[3].split(" ")[1:]:
+        if state not in states: states.append(state)
 
     for transi in linesOfFile[4:len(linesOfFile)]:
         for i in range(int(linesOfFile[0])):

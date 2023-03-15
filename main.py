@@ -20,6 +20,7 @@ display(t)
 # display(t)
 
 print("\nDeterminization =======================================")
+print("is deterministic ? ", is_deterministic(t))
 t=determinization(t)
 
 display(t)
