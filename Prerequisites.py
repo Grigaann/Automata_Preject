@@ -27,35 +27,63 @@ def display(automaton):
             if not line[col]:
                 print(" "*17,end="|")
             else:
-                print(" "*(17-(2*len(line[col])-1))+",".join([str(i) for i in line[col]]),end="|")
+                names=",".join([automaton[i][1] for i in line[col]])
+                print(" "*(17-len(names))+names,end="|")
         print()
     return
+
+def get_index(transitionTable, state):
+    for i in range(len(transitionTable)):
+        if transitionTable[i][1]==state:
+            return i
 
 def get_FA_from_file(fileName):
     with open(fileName, "r") as f:
         linesOfFile=f.read().split('\n')
-    print(linesOfFile)
-    transitionTable=[[[] for i in range(int(linesOfFile[0])+3)] for _ in range(int(linesOfFile[1]))]
+    transitionTable=[]
 
-    for i in range(int(linesOfFile[1])):
-        transitionTable[i][1]=str(i)
-        transitionTable[i][0]=0
-    # 0 = none, 1 = initial, 2 = final, 3 = both
+    states=[]
+
     for initial in linesOfFile[2].split(" ")[1:]:
-        transitionTable[int(initial)][0]+=1
+        states.append(initial)
     for initial in linesOfFile[3].split(" ")[1:]:
-        transitionTable[int(initial)][0]+=2
+        states.append(initial)
+
+    for transi in linesOfFile[4:len(linesOfFile)]:
+        for i in range(int(linesOfFile[0])):
+            transiSplit=transi.split(chr(ord('a')+i))
+            if len(transiSplit)==2:
+                for state in transiSplit:
+                    if state not in states:
+                        states.append(state)
+        transiSplit=transi.split(" ")
+        if len(transiSplit)==2:
+            for state in transiSplit:
+                if state not in states:
+                    states.append(state)
+
+    states.sort()
+
+    for state in states:
+        transitionTable.append([0, state]+[[] for _ in range(int(linesOfFile[0])+1)])
+
+
+    #0 = none, 1 = initial, 2 = final, 3 = both
+    for initial in linesOfFile[2].split(" ")[1:]:
+        transitionTable[get_index(transitionTable, initial)][0]+=1
+    for initial in linesOfFile[3].split(" ")[1:]:
+        transitionTable[get_index(transitionTable, initial)][0]+=2
 
     for transi in linesOfFile[4:len(linesOfFile)]:
         for i in range(int(linesOfFile[0])):
             transiSplit=transi.split(chr(ord('a')+i))
             
             if len(transiSplit)==2:
-                transitionTable[int(transiSplit[0])][2+i].append(int(transiSplit[1]))
+                transitionTable[get_index(transitionTable, transiSplit[0])][2+i].append(get_index(transitionTable, transiSplit[1]))
         transiSplit=transi.split(" ")
         if len(transiSplit)==2:
-            transitionTable[int(transiSplit[0])][2+i+1].append(int(transiSplit[1]))
-            
+            transitionTable[get_index(transitionTable, transiSplit[0])][2+i+1].append(get_index(transitionTable, transiSplit[1]))
+
     return transitionTable
 
 
