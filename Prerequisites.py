@@ -62,6 +62,7 @@ def get_FA_from_file(fileName):
                 if state not in states:
                     states.append(state)
 
+    # FIX THE SORT
     states.sort()
 
     for state in states:

@@ -22,7 +22,7 @@ def get_name(listState, transitionTable):
     return "_".join(listState)
 
 def get_index_name(name):
-    if "_" in name or bool: 
+    if "_" in name: 
         return name.split("_")
     lst=name.split("'")
     newLst=[]
