@@ -93,6 +93,8 @@ def standardization(transitionTable):
 
 
 def determinization(transitionTable):
+    if is_deterministic(transitionTable):
+        return transitionTable
     newTransitionTable = []
     names = []
 
