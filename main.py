@@ -28,15 +28,3 @@ t=determinization(t)
 display(t)
 
 
-with open("correct.txt") as file:
-    for line in file:
-        if not is_word_recognized(t, line[:-1]):
-            print("error", line[:-1])
-            break
-
-with open("false.txt") as file:
-    for line in file:
-        if is_word_recognized(t, line[:-1]):
-            print("error", line[:-1], is_word_recognized(t, line[:-1]))
-            break
-
