@@ -8,7 +8,6 @@ def display(automaton):
     for letter in alphabet:
         print("________"+str(letter),end="________|")
     print()
-    i___=0
     for line in automaton:
         # Set header column
         if line[0]==0:
@@ -21,8 +20,6 @@ def display(automaton):
             print("<->",end="")
 
         # Print the state concerned
-        print(i___, end=" ")
-        i___+=1
         print(" "*(17-len(line[1]))+line[1],end="|")
         # Print the transitions of the state
         for col in range(2,len(line)):
