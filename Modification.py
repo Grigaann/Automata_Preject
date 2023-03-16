@@ -114,12 +114,25 @@ def determinization(transitionTable):
             fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), get_index_name(name))))
     
     oldExit = []
+    oldExit_empty=[]
     for i in range(0, len(transitionTable)):
         if transitionTable[i][0] >= 2:
             oldExit.append(transitionTable[i][1])
+    for i in oldExit:
+        oldExit_empty.append(i)
+    bool_=True
+    while bool_:
+        bool_=False
+        for i in range(0, len(transitionTable)):
+            if transitionTable[i][1] not in oldExit_empty:
+                for state in oldExit_empty:
+                    if get_index(transitionTable, state) in transitionTable[i][-1]:
+                        bool_=True
+                        oldExit_empty.append(transitionTable[i][1])
+    print(oldExit_empty)
 
     for i in range(len(newTransitionTable)):
-        for newExit in oldExit:
+        for newExit in oldExit_empty:
             if newExit in newTransitionTable[i][1] and newTransitionTable[i][0] < 2:
                 newTransitionTable[i][0] += 2
 

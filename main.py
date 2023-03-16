@@ -18,9 +18,16 @@ display(t)
 # print("\nStandardization ========================================")
 # standardization(t)
 # display(t)
-
+print()
+print()
+print()
+print()
 print("\nDeterminization =======================================")
 print("is deterministic ? ", is_deterministic(t))
 t=determinization(t)
+
+words=["ac", ""]
+for w in words:
+    print(w +" : "+str(is_word_recognized(t, w)))
 
 display(t)

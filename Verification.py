@@ -33,6 +33,7 @@ def is_deterministic(transitionTable):
         for transition in line[2:len(line)-1]:
             if len(transition) > 1:
                 return False
+        if len(line[-1])>0 : return False
 
     return True
 
