@@ -48,6 +48,7 @@ def is_word_recognized_rec(transitionTable, word, state):
     index=2+get_index_from_letter(word[0])
     if index <= len(transitionTable[0])-1:
         # and transitionTable[state][index]!= state
+        
         if len(transitionTable[state][index])>0:
             bool= bool or is_word_recognized_rec(transitionTable, word[1::], transitionTable[state][index][0])
     for ind in range(len(transitionTable[state][-1])):

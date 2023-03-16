@@ -9,11 +9,14 @@ def get_transitions(allTransition, transitionTable, listState, vuEmpty):
         if i in listState:
             for y in range(2,len(transitionTable[i])-1):
                 allTransition[y-2]+=transitionTable[i][y]
+                if len(transitionTable[i][y])>0:
+                    #vuEmpty+=transitionTable[i][y]
+                    get_transitions(allTransition, transitionTable, transitionTable[i][y], vuEmpty)
 
-        for ind in transitionTable[i][-1]:
-            if ind not in vuEmpty:
-                vuEmpty.append(ind)
-                get_transitions(allTransition, transitionTable, [ind], vuEmpty)
+            for ind in transitionTable[i][-1]:
+                if ind not in vuEmpty:
+                    vuEmpty.append(ind)
+                    get_transitions(allTransition, transitionTable, [ind], vuEmpty)
 
 def get_name(listState, transitionTable):
     for name in listState:
@@ -33,7 +36,6 @@ def get_index_name(name):
 def fill_table(newTransitionTable, transitionTable, names, listState):
     newLine=[]
     allTransition=[[] for _ in range(len(transitionTable[0])-2)]
-
     vuEmpty=[]
     get_transitions(allTransition, transitionTable, listState, vuEmpty)
 
@@ -129,7 +131,6 @@ def determinization(transitionTable):
                     if get_index(transitionTable, state) in transitionTable[i][-1]:
                         bool_=True
                         oldExit_empty.append(transitionTable[i][1])
-    print(oldExit_empty)
 
     for i in range(len(newTransitionTable)):
         for newExit in oldExit_empty:
