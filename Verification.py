@@ -67,3 +67,9 @@ def is_word_recognized(transitionTable, word):
         print("error no entry found")
         return
     return is_word_recognized_rec(transitionTable, word, entry)
+
+def is_complete(transitionTable):
+    for i in range(len(transitionTable)):
+        for y in range(2, len(transitionTable[0])-1):
+            if len(transitionTable[i][y])==0:return False
+    return True

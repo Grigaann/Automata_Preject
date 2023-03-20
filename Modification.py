@@ -140,15 +140,32 @@ def determinization(transitionTable):
     return newTransitionTable
 
 def completion(transitionTable):
-    if not is_deterministic(transitionTable):
+    if is_complete(transitionTable):
+        return transitionTable
+    bool_=False
+    for i in range(len(transitionTable)):
+        if len(transitionTable[-1])>0:
+            bool_=True
+    if bool_ and not is_deterministic(transitionTable):
         transitionTable=determinization(transitionTable)
 
     for i in range(len(transitionTable)):
-        for transi in range(2, len(transitionTable[i])):
+        for transi in range(2, len(transitionTable[i])-1):
             if len(transitionTable[i][transi])==0:
                 transitionTable[i][transi]=[len(transitionTable)]
     newLine=[0, "p"]
-    for _ in range(2, len(transitionTable[0])):
+    for _ in range(2, len(transitionTable[0])-1):
         newLine.append([len(transitionTable)])
+    newLine.append([])
     transitionTable.append(newLine)
+    return transitionTable
+
+def complentary(transitionTable):
+    if not is_complete(transitionTable):
+        transitionTable= completion(transitionTable)
+    
+    for i in range(len(transitionTable)):
+        if transitionTable[i][0]>=2:transitionTable[i][0]-=2
+        else:transitionTable[i][0]+=2
+
     return transitionTable

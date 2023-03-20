@@ -11,20 +11,22 @@ display(t)
 # t_=determinization(t)
 
 # print("\Completion =======================================")
+# print(is_complete(t))
 # t_=completion(t)
-
+# print(is_complete(t_))
 # display(t_)
 
 # print("\nStandardization ========================================")
 # standardization(t)
 # display(t)
-print()
-print()
-print()
-print()
-print("\nDeterminization =======================================")
-print("is deterministic ? ", is_deterministic(t))
-t=determinization(t)
-display(t)
+# print()
 
+# print("\nDeterminization =======================================")
+# print("is deterministic ? ", is_deterministic(t))
+# t=determinization(t)
+# display(t)
+
+print("\nComplement =======================================")
+t_=complentary(t)
+display(t_)
 
