@@ -1,0 +1,55 @@
+This file is the execution trace of the automaton number : 3
+                    |________a________|________e________|
+-->                0|                1|                 |
+<--                1|                 |                 |
+
+Standardization =============================================================================
+                    |________a________|________e________|
+-->                i|                1|                 |
+                   0|                1|                 |
+<--                1|                 |                 |
+
+Determinization =============================================================================
+This automata is already deterministic
+
+Completion ==================================================================================
+                    |________a________|________e________|
+-->                i|                1|                 |
+                   0|                1|                 |
+<--                1|                p|                 |
+                   p|                p|                 |
+
+Complement ==================================================================================
+                    |________a________|________e________|
+<->                i|                1|                 |
+<--                0|                1|                 |
+                   1|                p|                 |
+<--                p|                p|                 |
+
+The word :  a is not
+The word :  b is not
+The word :  c is not
+The word :  ab is not
+The word :  ba is not
+The word :  bc is not
+The word :  cb is not
+The word :  ac is not
+The word :  ca is not
+The word :  abc is not
+The word :  acb is not
+The word :  bac is not
+The word :  bca is not
+The word :  cab is not
+The word :  cba is not
+The word :  abac is not
+The word :  abca is not
+The word :  acba is not
+The word :  bacb is not
+The word :  bcab is not
+The word :  bcba is not
+The word :  cabac is not
+The word :  cabca is not
+The word :  cacba is not
+The word :  cbacb is not
+The word :  cbcab is not
+The word :  cbcba is not

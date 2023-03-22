@@ -9,9 +9,9 @@ def get_transitions(allTransition, transitionTable, listState, vuEmpty):
         if i in listState:
             for y in range(2,len(transitionTable[i])-1):
                 allTransition[y-2]+=transitionTable[i][y]
-                if len(transitionTable[i][y])>0:
-                    #vuEmpty+=transitionTable[i][y]
-                    get_transitions(allTransition, transitionTable, transitionTable[i][y], vuEmpty)
+                # if len(transitionTable[i][y])>0:
+                #     #vuEmpty+=transitionTable[i][y]
+                #     get_transitions(allTransition, transitionTable, transitionTable[i][y], vuEmpty)
 
             for ind in transitionTable[i][-1]:
                 if ind not in vuEmpty:
@@ -99,10 +99,6 @@ def determinization(transitionTable):
         return transitionTable
     newTransitionTable = []
     names = []
-
-    # Dico format :
-    # key : state1_state2_stat3_... ascendant order
-    # value : index in the new table
 
     oldEntry = []
     for i in range(0, len(transitionTable)):

@@ -1,34 +1,46 @@
 from Modification import *
 
-def display(automaton):
+def display(writeInText, fileName,automaton):
     alphabet = [chr(ord('a')+k) for k in range(len(automaton[0][2:]))]
-    alphabet[-1]="€"
+    if writeInText:alphabet[-1]="e"
+    else:alphabet[-1]="€"
     # Set header row
-    print("   " + " "*17,end="|")
+    if writeInText:print_(fileName,writeInText,"   " + " "*17,end="|")
+    else:print("   " + " "*17,end="|")
     for letter in alphabet:
-        print("________"+str(letter),end="________|")
-    print()
+        if writeInText:print_(fileName,writeInText,"________"+str(letter),end="________|")
+        else:print("________"+str(letter),end="________|")
+    if writeInText:print_(fileName,writeInText,"")
+    else:print()
     for line in automaton:
         # Set header column
         if line[0]==0:
-            print("   ",end="")
+            if writeInText:print_(fileName,writeInText,"   ",end="")
+            else:print("   ",end="")
         elif line[0]==1:
-            print("-->",end="")
+            if writeInText:print_(fileName,writeInText,"-->",end="")
+            else:print("-->",end="")
         elif line[0] == 2:
-            print("<--",end="")
+            if writeInText:print_(fileName,writeInText,"<--",end="")
+            else:print("<--",end="")
         else:
-            print("<->",end="")
+            if writeInText:print_(fileName,writeInText,"<->",end="")
+            else:print("<->",end="")
 
         # Print the state concerned
-        print(" "*(17-len(line[1]))+line[1],end="|")
+        if writeInText:print_(fileName,writeInText," "*(17-len(line[1]))+line[1],end="|")
+        else:print(" "*(17-len(line[1]))+line[1],end="|")
         # Print the transitions of the state
         for col in range(2,len(line)):
             if not line[col]:
-                print(" "*17,end="|")
+                if writeInText:print_(fileName,writeInText," "*17,end="|")
+                else:print(" "*17,end="|")
             else:
                 names=",".join([automaton[i][1] for i in line[col]])
-                print(" "*(17-len(names))+names,end="|")
-        print()
+                if writeInText:print_(fileName,writeInText," "*(17-len(names))+names,end="|")
+                else:print(" "*(17-len(names))+names,end="|")
+        if writeInText:print_(fileName,writeInText,"")
+        else:print()
     return
 
 def get_index(transitionTable, state):
@@ -86,6 +98,11 @@ def get_FA_from_file(fileName):
 
     return transitionTable
 
+    
+def print_(file, writeInText, msg, end="\n"):
+    if writeInText:
+        with open("Execution_traces/"+file, "a") as f:
+            f.write(msg+end)
 
 def get_index_from_letter(letter):
     return ord(letter)-ord('a')

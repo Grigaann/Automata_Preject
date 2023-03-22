@@ -1,0 +1,82 @@
+This file is the execution trace of the automaton number : 35
+                    |________a________|________b________|________e________|
+-->                0|                 |                 |              1,4|
+                   1|                2|                 |                 |
+<--               10|                 |                 |                 |
+                   2|                 |                3|                 |
+                   3|                 |                 |               10|
+                   4|                 |                 |              5,8|
+                   5|                6|                 |                 |
+                   6|                 |                7|                 |
+                   7|                 |                 |              5,8|
+                   8|                9|                 |                 |
+                   9|                 |                 |               10|
+
+Standardization =============================================================================
+                    |________a________|________b________|________e________|
+-->                i|                 |                 |              1,4|
+                   0|                 |                 |              1,4|
+                   1|                2|                 |                 |
+<--               10|                 |                 |                 |
+                   2|                 |                3|                 |
+                   3|                 |                 |               10|
+                   4|                 |                 |              5,8|
+                   5|                6|                 |                 |
+                   6|                 |                7|                 |
+                   7|                 |                 |              5,8|
+                   8|                9|                 |                 |
+                   9|                 |                 |               10|
+
+Determinization =============================================================================
+                    |________a________|________b________|________e________|
+-->               i'|           2'6'9'|                 |                 |
+<--           2'6'9'|                 |             3'7'|                 |
+<--             3'7'|             6'9'|                 |                 |
+<--             6'9'|                 |               7'|                 |
+                  7'|             6'9'|                 |                 |
+
+Completion ==================================================================================
+                    |________a________|________b________|________e________|
+-->               i'|           2'6'9'|                p|                 |
+<--           2'6'9'|                p|             3'7'|                 |
+<--             3'7'|             6'9'|                p|                 |
+<--             6'9'|                p|               7'|                 |
+                  7'|             6'9'|                p|                 |
+                   p|                p|                p|                 |
+
+Complement ==================================================================================
+                    |________a________|________b________|________e________|
+<->               i'|           2'6'9'|                p|                 |
+              2'6'9'|                p|             3'7'|                 |
+                3'7'|             6'9'|                p|                 |
+                6'9'|                p|               7'|                 |
+<--               7'|             6'9'|                p|                 |
+<--                p|                p|                p|                 |
+
+The word :  a is recognized
+The word :  b is not
+The word :  c is not
+The word :  ab is recognized
+The word :  ba is not
+The word :  bc is not
+The word :  cb is not
+The word :  ac is not
+The word :  ca is not
+The word :  abc is not
+The word :  acb is not
+The word :  bac is not
+The word :  bca is not
+The word :  cab is not
+The word :  cba is not
+The word :  abac is not
+The word :  abca is not
+The word :  acba is not
+The word :  bacb is not
+The word :  bcab is not
+The word :  bcba is not
+The word :  cabac is not
+The word :  cabca is not
+The word :  cacba is not
+The word :  cbacb is not
+The word :  cbcab is not
+The word :  cbcba is not

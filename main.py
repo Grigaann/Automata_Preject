@@ -2,31 +2,43 @@ from Prerequisites import *
 
 #empty word : `
 
-automaton_nb = str(int(input("Enter the number of the test you want to work with (1,2 or 3) : ")))
-t=get_FA_from_file("Automata_tests/Int1-3-"+automaton_nb+".txt")
-display(t)
-#print(is_word_recognized(t, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
+writeInText=True
 
-# print("\nDeterminization =======================================")
-# t_=determinization(t)
+if not writeInText:automaton_nb_list = [str(int(input("Enter the number of the test you want to work with (1,2 or 3) : ")))]
+else:automaton_nb_list = [str(i+1) for i in range(44)]
+for automaton_nb in automaton_nb_list:
+    fileName="Int1-3-"+automaton_nb+".txt"
+    with open("Execution_traces/"+fileName, "w") as f:
+        f.write("This file is the execution trace of the automaton number : "+automaton_nb+"\n")
+    
+    t=get_FA_from_file("Automata_tests/"+fileName)
 
-# print("\Completion =======================================")
-# print(is_complete(t))
-# t_=completion(t)
-# print(is_complete(t_))
-# display(t_)
+    display(writeInText, fileName,t)
+    print_(fileName,writeInText,"\nStandardization =============================================================================")
 
-# print("\nStandardization ========================================")
-# standardization(t)
-# display(t)
-# print()
+    if is_standard(t): print_(fileName,writeInText,"This automata is already standard")
+    else:
+        standardization(t)
+        display(writeInText, fileName,t)
+    print_(fileName,writeInText,"\nDeterminization =============================================================================")
+    if is_deterministic(t): print_(fileName,writeInText,"This automata is already deterministic")
+    else:
+        t_=determinization(t)
+        display(writeInText, fileName,t_)
+    print_(fileName,writeInText,"\nCompletion ==================================================================================")
+    if is_complete(t): print_(fileName,writeInText,"This automata is already complete")
+    else:
+        t_=completion(t)
+        display(writeInText, fileName,t_)
+    print_(fileName,writeInText,"\nComplement ==================================================================================")
+    t_=complentary(t)
+    display(writeInText, fileName,t_)
 
-# print("\nDeterminization =======================================")
-# print("is deterministic ? ", is_deterministic(t))
-# t=determinization(t)
-# display(t)
+    print_(fileName,writeInText,"")
+    for word in ["a", "b", "c", "ab", "ba", "bc", "cb", "ac", "ca", "abc", "acb", "bac", "bca", "cab", "cba", "abac", "abca", "acba", "bacb", "bcab", "bcba", "cabac", "cabca", "cacba", "cbacb", "cbcab", "cbcba"]:
+        if is_word_recognized(t, word):
+            print_(fileName,writeInText,"The word :  " +word+ " is recognized")
+        else :
+            print_(fileName,writeInText,"The word :  "+ word+ " is not")
 
-print("\nComplement =======================================")
-t_=complentary(t)
-display(t_)
 
