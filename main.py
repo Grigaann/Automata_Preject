@@ -1,7 +1,5 @@
 from Prerequisites import *
 
-#empty word : `
-
 writeInText=True
 
 if not writeInText:automaton_nb_list = [str(int(input("Enter the number of the test you want to work with (1,2 or 3) : ")))]

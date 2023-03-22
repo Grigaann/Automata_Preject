@@ -1,6 +1,11 @@
 def get_index_from_letter(letter):
     return ord(letter)-ord('a')
 
+def get_index(transitionTable, name):
+    for i in range(len(transitionTable)):
+        if transitionTable[i][1]==name:
+            return i
+        
 def is_standard(transitionTable):
     entry = None
     for i in range(len(transitionTable)):
@@ -8,13 +13,18 @@ def is_standard(transitionTable):
             if entry != None :
                 return False
             entry=i
+            
     if entry is None:
         return False
 
     for line in transitionTable:
         for transition in line[2:len(line)]:
-            if i in transition:
+            if entry in transition:
                 return False
+       
+    for i in range(0, len(transitionTable)):
+        if i != entry and entry in transitionTable[i][-1]:
+            return False
 
     return True
 

@@ -5,11 +5,7 @@ This file is the execution trace of the automaton number : 19
                    2|                0|                 |
 
 Standardization =============================================================================
-                    |________a________|________e________|
--->                i|                2|                 |
-<--                0|                0|                 |
-                   1|                2|                 |
-                   2|                0|                 |
+This automata is already standard
 
 Determinization =============================================================================
 This automata is already deterministic
@@ -19,9 +15,8 @@ This automata is already complete
 
 Complement ==================================================================================
                     |________a________|________e________|
-<->                i|                2|                 |
                    0|                0|                 |
-<--                1|                2|                 |
+<->                1|                2|                 |
 <--                2|                0|                 |
 
 The word :  a is recognized
