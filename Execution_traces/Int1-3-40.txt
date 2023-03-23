@@ -36,12 +36,12 @@ Complement =====================================================================
                    0|                p|              1_2|
                    2|                0|                p|
 <--                p|                p|                p|
-The empty word is not recognized.
-The word : a is recognized.
-The word : b is recognized.
+The empty word is recognized.
+The word : a is not recognized.
+The word : b is not recognized.
 The word : c is not recognized.
-The word : ab is recognized.
-The word : ba is recognized.
+The word : ab is not recognized.
+The word : ba is not recognized.
 The word : bc is not recognized.
 The word : cb is not recognized.
 The word : ac is not recognized.

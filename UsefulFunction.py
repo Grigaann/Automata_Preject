@@ -17,3 +17,10 @@ def get_all_index_name(name):
     for i in lst: 
         if i != "": newLst.append(i)
     return newLst
+
+def get_name(listState, transitionTable):
+    """get the new name of the state when determinizing"""
+    for name in listState:
+        if len(transitionTable[get_index(transitionTable, name)][-1])>0:
+            return "'".join(listState)+"'"
+    return "_".join(listState)

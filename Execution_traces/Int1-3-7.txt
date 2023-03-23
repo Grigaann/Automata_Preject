@@ -15,18 +15,14 @@ Determinization ================================================================
 <--              0_1|              0_1|
 
 Completion ==================================================================================
-                    |________a________|
--->                i|              0_1|
-<--              0_1|              0_1|
-                   p|                p|
+This deterministic automaton is already complete.
 
 Complement ==================================================================================
                     |________a________|
 <->                i|              0_1|
                  0_1|              0_1|
-<--                p|                p|
-The empty word is not recognized.
-The word : a is recognized.
+The empty word is recognized.
+The word : a is not recognized.
 The word : b is not recognized.
 The word : c is not recognized.
 The word : ab is not recognized.

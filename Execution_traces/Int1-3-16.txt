@@ -40,31 +40,31 @@ Complement =====================================================================
 <--              3_4|                p|                p|              3_4|              0_4|
                  0_4|                p|                p|                p|              0_4|
 <--                p|                p|                p|                p|                p|
-The empty word is not recognized.
-The word : a is not recognized.
-The word : b is not recognized.
-The word : c is not recognized.
-The word : ab is not recognized.
-The word : ba is not recognized.
-The word : bc is not recognized.
-The word : cb is not recognized.
-The word : ac is not recognized.
-The word : ca is not recognized.
-The word : abc is not recognized.
-The word : acb is not recognized.
-The word : bac is not recognized.
-The word : bca is not recognized.
-The word : cab is not recognized.
-The word : cba is not recognized.
-The word : abac is not recognized.
-The word : abca is not recognized.
-The word : acba is not recognized.
-The word : bacb is not recognized.
-The word : bcab is not recognized.
-The word : bcba is not recognized.
-The word : cabac is not recognized.
-The word : cabca is not recognized.
-The word : cacba is not recognized.
-The word : cbacb is not recognized.
-The word : cbcab is not recognized.
-The word : cbcba is not recognized.
+The empty word is recognized.
+The word : a is recognized.
+The word : b is recognized.
+The word : c is recognized.
+The word : ab is recognized.
+The word : ba is recognized.
+The word : bc is recognized.
+The word : cb is recognized.
+The word : ac is recognized.
+The word : ca is recognized.
+The word : abc is recognized.
+The word : acb is recognized.
+The word : bac is recognized.
+The word : bca is recognized.
+The word : cab is recognized.
+The word : cba is recognized.
+The word : abac is recognized.
+The word : abca is recognized.
+The word : acba is recognized.
+The word : bacb is recognized.
+The word : bcab is recognized.
+The word : bcba is recognized.
+The word : cabac is recognized.
+The word : cabca is recognized.
+The word : cacba is recognized.
+The word : cbacb is recognized.
+The word : cbcab is recognized.
+The word : cbcba is recognized.

@@ -13,7 +13,7 @@ Determinization ================================================================
 This automaton is already deterministic.
 
 Completion ==================================================================================
-This automaton is already complete.
+This deterministic automaton is already complete.
 
 Complement ==================================================================================
                     |________a________|

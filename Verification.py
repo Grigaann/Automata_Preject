@@ -63,8 +63,7 @@ def is_word_recognized_rec(transitionTable, word, state):
 
         if len(transitionTable[state][index])>0:
             bool= bool or is_word_recognized_rec(transitionTable, word[1::], transitionTable[state][index][0])
-    for ind in range(len(transitionTable[state][-1])):
-        bool = bool or is_word_recognized_rec(transitionTable, word, transitionTable[state][-1][ind])
+    # no need to handle when there is the empty word because there is not since the automaton is deterministic
     return bool
 
 def is_word_recognized(transitionTable, word):
@@ -86,6 +85,9 @@ def is_word_recognized(transitionTable, word):
     return is_word_recognized_rec(transitionTable, word, entry)
 
 def is_complete(transitionTable):
+    if not is_deterministic(transitionTable):
+        return False
+
     # check if each state has at least one transition for each letter of the alphabet except the empty word
     for i in range(len(transitionTable)):
         for y in range(2, len(transitionTable[0])-1):

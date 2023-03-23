@@ -25,19 +25,19 @@ if writeInText:
         if is_deterministic(t):
             print_(fileName,writeInText,"This automaton is already deterministic.")
         else:
-            t_=determinization(t)
-            display(t_,writeInText, fileName)
+            t=determinization(t)
+            display(t,writeInText, fileName)
 
         print_(fileName,writeInText,"\nCompletion ==================================================================================")
         if is_complete(t):
-            print_(fileName,writeInText,"This automaton is already complete.")
+            print_(fileName,writeInText,"This deterministic automaton is already complete.")
         else:
-            t_=completion(t)
-            display(t_,writeInText, fileName)
+            t=completion(t)
+            display(t,writeInText, fileName)
 
         print_(fileName,writeInText,"\nComplement ==================================================================================")
-        t_=complentary(t)
-        display(t_,writeInText, fileName)
+        t=complentary(t)
+        display(t,writeInText, fileName)
 
         print_(fileName, writeInText, "The empty word is recognized.")if is_word_recognized(t, "")else print_(fileName, writeInText, "The empty word is not recognized.")
 
