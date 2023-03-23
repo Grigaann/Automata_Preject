@@ -5,29 +5,17 @@ def get_transitions(allTransition, transitionTable, listState, vuEmpty):
         if i in listState:
             for y in range(2,len(transitionTable[i])-1):
                 allTransition[y-2]+=transitionTable[i][y]
-                # if len(transitionTable[i][y])>0:
-                #     #vuEmpty+=transitionTable[i][y]
-                #     get_transitions(allTransition, transitionTable, transitionTable[i][y], vuEmpty)
 
             for ind in transitionTable[i][-1]:
                 if ind not in vuEmpty:
                     vuEmpty.append(ind)
                     get_transitions(allTransition, transitionTable, [ind], vuEmpty)
 
-def get_name(listState, transitionTable):
+def _get_name(listState, transitionTable):
     for name in listState:
         if len(transitionTable[get_index(transitionTable, name)][-1])>0:
             return "'".join(listState)+"'"
     return "_".join(listState)
-
-def get_index_name(name):
-    if "_" in name: 
-        return name.split("_")
-    lst=name.split("'")
-    newLst=[]
-    for i in lst: 
-        if i != "": newLst.append(i)
-    return newLst
 
 def fill_table(newTransitionTable, transitionTable, names, listState):
     newLine=[]
@@ -41,13 +29,13 @@ def fill_table(newTransitionTable, transitionTable, names, listState):
 
     listState=list(map(lambda x: transitionTable[x][1], listState))
     newLine.append(0)
-    name=get_name(listState, transitionTable)
+    name=_get_name(listState, transitionTable)
     newLine.append(name)
     if name not in names : names.append(name)
     for transition in allTransition: 
         if len(transition)>0:
             tmp=list(map(lambda x: transitionTable[x][1], transition))
-            nameTmp=get_name(tmp, transitionTable)
+            nameTmp=_get_name(tmp, transitionTable)
             if nameTmp not in names : names.append(nameTmp)
             newLine.append([names.index(nameTmp)])
         else:
@@ -102,7 +90,7 @@ def determinization(transitionTable):
     
     for name in names:
         if name not in [line[1] for line in newTransitionTable]:
-            fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), get_index_name(name))))
+            fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), get_all_index_name(name))))
     
     oldExit = []
     oldExit_empty=[]

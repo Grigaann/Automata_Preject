@@ -1,78 +1,78 @@
-This file is the execution trace of the automaton number : 17
-                    |________a________|________b________|________c________|________d________|________e________|
-                   0|                 |                 |                 |                 |                 |
--->                1|              1,2|                 |                 |                 |                 |
--->                2|                 |              2,3|                 |                 |                 |
--->                3|                 |                 |              3,4|                 |                 |
--->                4|                 |                 |                 |              4,5|                 |
-<--                5|                0|                0|                0|                0|                 |
+This file is the execution trace of the automaton number : 17.
+                    |________a________|________b________|________c________|________d________|
+                   0|                 |                 |                 |                 |
+-->                1|              1,2|                 |                 |                 |
+-->                2|                 |              2,3|                 |                 |
+-->                3|                 |                 |              3,4|                 |
+-->                4|                 |                 |                 |              4,5|
+<--                5|                0|                0|                0|                0|
 
 Standardization =============================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
--->                i|              1,2|              2,3|              3,4|              4,5|                 |
-                   0|                 |                 |                 |                 |                 |
-                   1|              1,2|                 |                 |                 |                 |
-                   2|                 |              2,3|                 |                 |                 |
-                   3|                 |                 |              3,4|                 |                 |
-                   4|                 |                 |                 |              4,5|                 |
-<--                5|                0|                0|                0|                0|                 |
+                    |________a________|________b________|________c________|________d________|
+-->                i|              1,2|              2,3|              3,4|              4,5|
+                   0|                 |                 |                 |                 |
+                   1|              1,2|                 |                 |                 |
+                   2|                 |              2,3|                 |                 |
+                   3|                 |                 |              3,4|                 |
+                   4|                 |                 |                 |              4,5|
+<--                5|                0|                0|                0|                0|
 
 Determinization =============================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
--->                i|              1_2|              2_3|              3_4|              4_5|                 |
-                 1_2|              1_2|              2_3|                 |                 |                 |
-                 2_3|                 |              2_3|              3_4|                 |                 |
-                 3_4|                 |                 |              3_4|              4_5|                 |
-<--              4_5|                0|                0|                0|            0_4_5|                 |
-                   0|                 |                 |                 |                 |                 |
-<--            0_4_5|                0|                0|                0|            0_4_5|                 |
+                    |________a________|________b________|________c________|________d________|
+-->                i|              1_2|              2_3|              3_4|              4_5|
+                 1_2|              1_2|              2_3|                 |                 |
+                 2_3|                 |              2_3|              3_4|                 |
+                 3_4|                 |                 |              3_4|              4_5|
+<--              4_5|                0|                0|                0|            0_4_5|
+                   0|                 |                 |                 |                 |
+<--            0_4_5|                0|                0|                0|            0_4_5|
 
 Completion ==================================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
--->                i|              1_2|              2_3|              3_4|              4_5|                 |
-                 1_2|              1_2|              2_3|                p|                p|                 |
-                 2_3|                p|              2_3|              3_4|                p|                 |
-                 3_4|                p|                p|              3_4|              4_5|                 |
-<--              4_5|                0|                0|                0|            0_4_5|                 |
-                   0|                p|                p|                p|                p|                 |
-<--            0_4_5|                0|                0|                0|            0_4_5|                 |
-                   p|                p|                p|                p|                p|                 |
+                    |________a________|________b________|________c________|________d________|
+-->                i|              1_2|              2_3|              3_4|              4_5|
+                 1_2|              1_2|              2_3|                p|                p|
+                 2_3|                p|              2_3|              3_4|                p|
+                 3_4|                p|                p|              3_4|              4_5|
+<--              4_5|                0|                0|                0|            0_4_5|
+                   0|                p|                p|                p|                p|
+<--            0_4_5|                0|                0|                0|            0_4_5|
+                   p|                p|                p|                p|                p|
 
 Complement ==================================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
-<->                i|              1_2|              2_3|              3_4|              4_5|                 |
-<--              1_2|              1_2|              2_3|                p|                p|                 |
-<--              2_3|                p|              2_3|              3_4|                p|                 |
-<--              3_4|                p|                p|              3_4|              4_5|                 |
-                 4_5|                0|                0|                0|            0_4_5|                 |
-<--                0|                p|                p|                p|                p|                 |
-               0_4_5|                0|                0|                0|            0_4_5|                 |
-<--                p|                p|                p|                p|                p|                 |
-
-The word :  a is not
-The word :  b is not
-The word :  c is not
-The word :  ab is not
-The word :  ba is not
-The word :  bc is not
-The word :  cb is not
-The word :  ac is not
-The word :  ca is not
-The word :  abc is not
-The word :  acb is not
-The word :  bac is not
-The word :  bca is not
-The word :  cab is not
-The word :  cba is not
-The word :  abac is not
-The word :  abca is not
-The word :  acba is not
-The word :  bacb is not
-The word :  bcab is not
-The word :  bcba is not
-The word :  cabac is not
-The word :  cabca is not
-The word :  cacba is not
-The word :  cbacb is not
-The word :  cbcab is not
-The word :  cbcba is not
+                    |________a________|________b________|________c________|________d________|
+<->                i|              1_2|              2_3|              3_4|              4_5|
+<--              1_2|              1_2|              2_3|                p|                p|
+<--              2_3|                p|              2_3|              3_4|                p|
+<--              3_4|                p|                p|              3_4|              4_5|
+                 4_5|                0|                0|                0|            0_4_5|
+<--                0|                p|                p|                p|                p|
+               0_4_5|                0|                0|                0|            0_4_5|
+<--                p|                p|                p|                p|                p|
+The empty word is not recognized.
+The word : a is not recognized.
+The word : b is not recognized.
+The word : c is not recognized.
+The word : ab is not recognized.
+The word : ba is not recognized.
+The word : bc is not recognized.
+The word : cb is not recognized.
+The word : ac is not recognized.
+The word : ca is not recognized.
+The word : abc is not recognized.
+The word : acb is not recognized.
+The word : bac is not recognized.
+The word : bca is not recognized.
+The word : cab is not recognized.
+The word : cba is not recognized.
+The word : abac is not recognized.
+The word : abca is not recognized.
+The word : acba is not recognized.
+The word : bacb is not recognized.
+The word : bcab is not recognized.
+The word : bcba is not recognized.
+The word : cabac is not recognized.
+The word : cabca is not recognized.
+The word : cacba is not recognized.
+The word : cbacb is not recognized.
+The word : cbcab is not recognized.
+The word : cbcba is not recognized.

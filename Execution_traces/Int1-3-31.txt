@@ -1,4 +1,4 @@
-This file is the execution trace of the automaton number : 31
+This file is the execution trace of the automaton number : 31.
                     |________a________|________b________|________e________|
 -->                0|                 |                 |              1,4|
                    1|                2|                 |                3|
@@ -10,61 +10,61 @@ This file is the execution trace of the automaton number : 31
 <--                7|                 |                 |                 |
 
 Standardization =============================================================================
-This automata is already standard
+This automaton is already standard.
 
 Determinization =============================================================================
-                    |________a________|________b________|________e________|
-<->               0'|                2|             3'5'|                 |
-                   2|               3'|               1'|                 |
-<--             3'5'|                 |             3'6'|                 |
-<--               3'|                 |               3'|                 |
-<--               1'|                2|               3'|                 |
-<--             3'6'|                 |             3'5'|                 |
+                    |________a________|________b________|
+<->               0'|                2|             3'5'|
+                   2|               3'|               1'|
+<--             3'5'|                 |             3'6'|
+<--               3'|                 |               3'|
+<--               1'|                2|               3'|
+<--             3'6'|                 |             3'5'|
 
 Completion ==================================================================================
-                    |________a________|________b________|________e________|
-<->               0'|                2|             3'5'|                 |
-                   2|               3'|               1'|                 |
-<--             3'5'|                p|             3'6'|                 |
-<--               3'|                p|               3'|                 |
-<--               1'|                2|               3'|                 |
-<--             3'6'|                p|             3'5'|                 |
-                   p|                p|                p|                 |
+                    |________a________|________b________|
+<->               0'|                2|             3'5'|
+                   2|               3'|               1'|
+<--             3'5'|                p|             3'6'|
+<--               3'|                p|               3'|
+<--               1'|                2|               3'|
+<--             3'6'|                p|             3'5'|
+                   p|                p|                p|
 
 Complement ==================================================================================
-                    |________a________|________b________|________e________|
--->               0'|                2|             3'5'|                 |
-<--                2|               3'|               1'|                 |
-                3'5'|                p|             3'6'|                 |
-                  3'|                p|               3'|                 |
-                  1'|                2|               3'|                 |
-                3'6'|                p|             3'5'|                 |
-<--                p|                p|                p|                 |
-
-The word :  a is not
-The word :  b is recognized
-The word :  c is not
-The word :  ab is recognized
-The word :  ba is not
-The word :  bc is not
-The word :  cb is not
-The word :  ac is not
-The word :  ca is not
-The word :  abc is not
-The word :  acb is not
-The word :  bac is not
-The word :  bca is not
-The word :  cab is not
-The word :  cba is not
-The word :  abac is not
-The word :  abca is not
-The word :  acba is not
-The word :  bacb is not
-The word :  bcab is not
-The word :  bcba is not
-The word :  cabac is not
-The word :  cabca is not
-The word :  cacba is not
-The word :  cbacb is not
-The word :  cbcab is not
-The word :  cbcba is not
+                    |________a________|________b________|
+-->               0'|                2|             3'5'|
+<--                2|               3'|               1'|
+                3'5'|                p|             3'6'|
+                  3'|                p|               3'|
+                  1'|                2|               3'|
+                3'6'|                p|             3'5'|
+<--                p|                p|                p|
+The empty word is recognized.
+The word : a is not recognized.
+The word : b is recognized.
+The word : c is not recognized.
+The word : ab is recognized.
+The word : ba is not recognized.
+The word : bc is not recognized.
+The word : cb is not recognized.
+The word : ac is not recognized.
+The word : ca is not recognized.
+The word : abc is not recognized.
+The word : acb is not recognized.
+The word : bac is not recognized.
+The word : bca is not recognized.
+The word : cab is not recognized.
+The word : cba is not recognized.
+The word : abac is not recognized.
+The word : abca is not recognized.
+The word : acba is not recognized.
+The word : bacb is not recognized.
+The word : bcab is not recognized.
+The word : bcba is not recognized.
+The word : cabac is not recognized.
+The word : cabca is not recognized.
+The word : cacba is not recognized.
+The word : cbacb is not recognized.
+The word : cbcab is not recognized.
+The word : cbcba is not recognized.

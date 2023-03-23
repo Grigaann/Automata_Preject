@@ -1,63 +1,63 @@
-This file is the execution trace of the automaton number : 14
-                    |________a________|________b________|________c________|________d________|________e________|
--->                0|                0|                2|                3|                1|                 |
-<--                1|                 |                 |                 |                1|                 |
-                   2|                 |                2|                3|                1|                 |
-                   3|                 |                 |                3|                1|                 |
+This file is the execution trace of the automaton number : 14.
+                    |________a________|________b________|________c________|________d________|
+-->                0|                0|                2|                3|                1|
+<--                1|                 |                 |                 |                1|
+                   2|                 |                2|                3|                1|
+                   3|                 |                 |                3|                1|
 
 Standardization =============================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
--->                i|                0|                2|                3|                1|                 |
-                   0|                0|                2|                3|                1|                 |
-<--                1|                 |                 |                 |                1|                 |
-                   2|                 |                2|                3|                1|                 |
-                   3|                 |                 |                3|                1|                 |
+                    |________a________|________b________|________c________|________d________|
+-->                i|                0|                2|                3|                1|
+                   0|                0|                2|                3|                1|
+<--                1|                 |                 |                 |                1|
+                   2|                 |                2|                3|                1|
+                   3|                 |                 |                3|                1|
 
 Determinization =============================================================================
-This automata is already deterministic
+This automaton is already deterministic.
 
 Completion ==================================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
--->                i|                0|                2|                3|                1|                 |
-                   0|                0|                2|                3|                1|                 |
-<--                1|                p|                p|                p|                1|                 |
-                   2|                p|                2|                3|                1|                 |
-                   3|                p|                p|                3|                1|                 |
-                   p|                p|                p|                p|                p|                 |
+                    |________a________|________b________|________c________|________d________|
+-->                i|                0|                2|                3|                1|
+                   0|                0|                2|                3|                1|
+<--                1|                p|                p|                p|                1|
+                   2|                p|                2|                3|                1|
+                   3|                p|                p|                3|                1|
+                   p|                p|                p|                p|                p|
 
 Complement ==================================================================================
-                    |________a________|________b________|________c________|________d________|________e________|
-<->                i|                0|                2|                3|                1|                 |
-<--                0|                0|                2|                3|                1|                 |
-                   1|                p|                p|                p|                1|                 |
-<--                2|                p|                2|                3|                1|                 |
-<--                3|                p|                p|                3|                1|                 |
-<--                p|                p|                p|                p|                p|                 |
-
-The word :  a is recognized
-The word :  b is recognized
-The word :  c is recognized
-The word :  ab is recognized
-The word :  ba is recognized
-The word :  bc is recognized
-The word :  cb is recognized
-The word :  ac is recognized
-The word :  ca is recognized
-The word :  abc is recognized
-The word :  acb is recognized
-The word :  bac is recognized
-The word :  bca is recognized
-The word :  cab is recognized
-The word :  cba is recognized
-The word :  abac is recognized
-The word :  abca is recognized
-The word :  acba is recognized
-The word :  bacb is recognized
-The word :  bcab is recognized
-The word :  bcba is recognized
-The word :  cabac is recognized
-The word :  cabca is recognized
-The word :  cacba is recognized
-The word :  cbacb is recognized
-The word :  cbcab is recognized
-The word :  cbcba is recognized
+                    |________a________|________b________|________c________|________d________|
+<->                i|                0|                2|                3|                1|
+<--                0|                0|                2|                3|                1|
+                   1|                p|                p|                p|                1|
+<--                2|                p|                2|                3|                1|
+<--                3|                p|                p|                3|                1|
+<--                p|                p|                p|                p|                p|
+The empty word is recognized.
+The word : a is recognized.
+The word : b is recognized.
+The word : c is recognized.
+The word : ab is recognized.
+The word : ba is recognized.
+The word : bc is recognized.
+The word : cb is recognized.
+The word : ac is recognized.
+The word : ca is recognized.
+The word : abc is recognized.
+The word : acb is recognized.
+The word : bac is recognized.
+The word : bca is recognized.
+The word : cab is recognized.
+The word : cba is recognized.
+The word : abac is recognized.
+The word : abca is recognized.
+The word : acba is recognized.
+The word : bacb is recognized.
+The word : bcab is recognized.
+The word : bcba is recognized.
+The word : cabac is recognized.
+The word : cabca is recognized.
+The word : cacba is recognized.
+The word : cbacb is recognized.
+The word : cbcab is recognized.
+The word : cbcba is recognized.
