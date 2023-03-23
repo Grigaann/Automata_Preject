@@ -59,11 +59,12 @@ else:
         while looping:
             answer = int(input("What do you want to do with this automaton ?\n"
                                "\tEnter 1 if you want to see it.\n"
-                               "\tEnter 2 if you want to standardize it.\n"
-                               "\tEnter 3 if you want to determinize it.\n"
-                               "\tEnter 4 if you want to complete it.\n"
-                               "\tEnter 5 if you want to work with its complementary language.\n"
-                               "\tEnter 6 if you want to check a word recognition.\n"
+                               "\tEnter 2 if you want to reinitialise the automaton\n"
+                               "\tEnter 3 if you want to standardize it.\n"
+                               "\tEnter 4 if you want to determinize it.\n"
+                               "\tEnter 5 if you want to complete it.\n"
+                               "\tEnter 6 if you want to work with its complementary language.\n"
+                               "\tEnter 7 if you want to check a word recognition.\n"
                                "\tEnter 0 if you want to change the automaton you work with.\n"
                                "Your answer : "))
 
@@ -75,31 +76,39 @@ else:
                 display(automaton,writeInText)
 
             if answer==2:
+                automaton = get_FA_from_file("Automata_tests/Int1-3-" + automaton_nb + ".txt")
+                print("\nThe automaton has been reinitialised based on the according file.")
+
+            if answer==3:
                 print("\nStandardization =============================================================================")
                 if is_standard(automaton):
                     print("This automaton is already standard.")
                 else:
-                    display(standardization(automaton),writeInText)
+                    automaton=standardization(automaton)
+                    display(automaton,writeInText)
 
-            if answer==3:
+            if answer==4:
                 print("\nDeterminization =============================================================================")
                 if is_deterministic(automaton):
                     print("This automaton is already deterministic.")
                 else:
-                    display(determinization(automaton),writeInText)
+                    automaton=determinization(automaton)
+                    display(automaton,writeInText)
 
-            if answer==4:
+            if answer==5:
                 print("\nCompletion ==================================================================================")
                 if is_complete(automaton):
                     print("This automaton is already complete.")
                 else:
-                    display(completion(automaton),writeInText)
-
-            if answer==5:
-                print("\nComplement ==================================================================================")
-                display(complentary(automaton),writeInText)
+                    automaton=completion(automaton)
+                    display(automaton,writeInText)
 
             if answer==6:
+                print("\nComplement ==================================================================================")
+                automaton=complentary(automaton)
+                display(automaton,writeInText)
+
+            if answer==7:
                 word = str(input("Enter a word to be checked by the automaton : "))
                 if word == "":
                     print("The empty word is recognized.") if is_word_recognized(automaton, word) else print("The empty word is not recognized.")
