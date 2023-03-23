@@ -1,6 +1,6 @@
 from Modification import *
 
-def display(writeInText, fileName,automaton):
+def display(automaton,writeInText,fileName=""):
     alphabet = [chr(ord('a')+k) for k in range(len(automaton[0][2:]))]
     if writeInText:alphabet[-1]="e"
     else:alphabet[-1]="€"

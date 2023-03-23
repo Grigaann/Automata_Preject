@@ -1,9 +1,5 @@
 from Verification import *
 
-def get_index(transitionTable, x):
-    for i in range(len(transitionTable)):
-        if transitionTable[i][1]==x : return i
-
 def get_transitions(allTransition, transitionTable, listState, vuEmpty):
     for i in range(len(transitionTable)):
         if i in listState:
@@ -64,8 +60,6 @@ def standardization(transitionTable):
     if is_standard(transitionTable):
         return transitionTable
 
-# /!\ REMOVED THE +1 ON ALL STATES OF THE TABLE
-
     # Inserting new entry
     transitionTable.insert(0, [[] for _ in range(len(transitionTable[0]))])
     transitionTable[0][0] = 1
@@ -89,7 +83,6 @@ def standardization(transitionTable):
     for i in range(len(transitionTable)):
         for y in range(2, len(transitionTable[i])):
             transitionTable[i][y] = list(map(lambda x: x+1, transitionTable[i][y]))
-
 
     return transitionTable
 
