@@ -26,7 +26,7 @@ Complement =====================================================================
                    1|                1|                p|                0|                p|
 <--                p|                p|                p|                p|                p|
 The empty word is recognized.
-The word : a is not recognized.
+The word : a is not recognized...
 The word : b is recognized.
 The word : c is recognized.
 The word : ab is recognized.

@@ -100,7 +100,6 @@ def get_FA_from_file(fileName):
         transiSplit=transi.split(" ")
         if len(transiSplit)==2:
             transitionTable[get_index(transitionTable, transiSplit[0])][2+i+1].append(get_index(transitionTable, transiSplit[1]))
-
     return transitionTable
 
     

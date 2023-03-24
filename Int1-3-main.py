@@ -11,41 +11,41 @@ if writeInText:
         with open("Execution_traces/"+fileName, "w") as f:
             f.write("This file is the execution trace of the automaton number : "+automaton_nb+".\n")
 
-        t=get_FA_from_file("Automata_tests/"+fileName)
-        display(t,writeInText, fileName)
+        automaton=get_FA_from_file("Automata_tests/"+fileName)
+        display(automaton,writeInText, fileName)
 
         print_(fileName,writeInText,"\nStandardization =============================================================================")
-        if is_standard(t):
+        if is_standard(automaton):
             print_(fileName,writeInText,"This automaton is already standard.")
         else:
-            standardization(t)
-            display(t,writeInText, fileName)
+            standardization(automaton)
+            display(automaton,writeInText, fileName)
 
         print_(fileName,writeInText,"\nDeterminization =============================================================================")
-        if is_deterministic(t):
+        if is_deterministic(automaton):
             print_(fileName,writeInText,"This automaton is already deterministic.")
         else:
-            t=determinization(t)
-            display(t,writeInText, fileName)
+            automaton=determinization(automaton)
+            display(automaton,writeInText, fileName)
 
         print_(fileName,writeInText,"\nCompletion ==================================================================================")
-        if is_complete(t):
+        if is_complete(automaton):
             print_(fileName,writeInText,"This deterministic automaton is already complete.")
         else:
-            t=completion(t)
-            display(t,writeInText, fileName)
+            automaton=completion(automaton)
+            display(automaton,writeInText, fileName)
 
         print_(fileName,writeInText,"\nComplement ==================================================================================")
-        t=complentary(t)
-        display(t,writeInText, fileName)
+        automaton=complentary(automaton)
+        display(automaton,writeInText, fileName)
 
-        print_(fileName, writeInText, "The empty word is recognized.")if is_word_recognized(t, "")else print_(fileName, writeInText, "The empty word is not recognized.")
+        print_(fileName, writeInText, "The empty word is recognized.") if is_word_recognized(automaton, "") else print_(fileName, writeInText, "The empty word is not recognized.")
 
         for word in ["a", "b", "c", "ab", "ba", "bc", "cb", "ac", "ca", "abc", "acb", "bac", "bca", "cab", "cba", "abac", "abca", "acba", "bacb", "bcab", "bcba", "cabac", "cabca", "cacba", "cbacb", "cbcab", "cbcba"]:
-            if is_word_recognized(t, word):
+            if is_word_recognized(automaton, word):
                 print_(fileName,writeInText,"The word : " +word+ " is recognized.")
             else :
-                print_(fileName,writeInText,"The word : " +word+ " is not recognized.")
+                print_(fileName,writeInText,"The word : " +word+ " is not recognized...")
     print("The execution traces have been created with success!")
 
 
@@ -100,6 +100,8 @@ else:
                 if is_complete(automaton):
                     print("This automaton is already complete.")
                 else:
+                    if not is_deterministic(automaton):
+                        print("The automata is not deterministic, so we need to determinize before being completed.")
                     automaton=completion(automaton)
                     display(automaton,writeInText)
 

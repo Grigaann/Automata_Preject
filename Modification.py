@@ -7,6 +7,7 @@ def get_transitions(allTransition, transitionTable, listState, vuEmpty):
     the states of all transitions of all states reached with an empty word transition
 
     """
+
     for i in range(len(transitionTable)):
         if i in listState:
             for y in range(2,len(transitionTable[i])-1):
@@ -19,31 +20,34 @@ def get_transitions(allTransition, transitionTable, listState, vuEmpty):
                     get_transitions(allTransition, transitionTable, [ind], vuEmpty)
 
 def fill_table(newTransitionTable, transitionTable, names, listState):
-    newLine=[]
-
+    
     # will store all the states of the transitions of the new state
     allTransition=[[] for _ in range(len(transitionTable[0])-2)]
+
     vuEmpty=[]
     get_transitions(allTransition, transitionTable, listState, vuEmpty)
 
-    # removing all doubles and sorting the list of states
     for y in range(2,len(transitionTable[0])-1):
         allTransition[y-2]=list(set(allTransition[y-2]))
         allTransition[y-2].sort()
-
+    
     listState=list(map(lambda x: transitionTable[x][1], listState))
-    # listState is now equal to all the names of the states inside it before
 
+    # listState is now equal to all the names of the states inside it before
+    newLine=[]
     newLine.append(0)
     # the name will be a concatenation of all names in listState with _ or ' between them (_ if not empty transitions else ')
     name=get_name(listState, transitionTable)
+
     newLine.append(name)
     if name not in names : names.append(name)
+
     for transition in allTransition: 
         if len(transition)>0:
             # computing in the name manner the name of transitions and getting its index in names (index in names = index in newTransitionTable)
             tmp=list(map(lambda x: transitionTable[x][1], transition))
             nameTmp=get_name(tmp, transitionTable)
+            # => 2_4
             if nameTmp not in names : names.append(nameTmp)
             # so we add the new index into the new transition of the new line
             newLine.append([names.index(nameTmp)])
@@ -52,6 +56,65 @@ def fill_table(newTransitionTable, transitionTable, names, listState):
 
 
     newTransitionTable.append(newLine)
+
+def determinization(transitionTable):
+    if is_deterministic(transitionTable):
+        return transitionTable
+    newTransitionTable = []
+    # list that store all the new names of the new states
+    # the index of the names in names will correspond to the index of the line of this state in newTransitionTable
+    names = []
+
+    # put all old entries into the list oldInitialState
+    oldInitialState = []
+    for i in range(0, len(transitionTable)):
+        if transitionTable[i][0] % 2 == 1:
+            oldInitialState.append(i)
+    # calling fill table with all the initial states
+    fill_table(newTransitionTable, transitionTable, names, oldInitialState)
+    # setting the entry
+    newTransitionTable[0][0] = 1
+    
+    # calling fill table for all names in names
+
+    for name in names:
+        if name not in [line[1] for line in newTransitionTable]:
+            fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), get_all_index_name(name))))
+    
+    # storing all final states in the list oldFinalState
+
+    oldFinalState = []
+    for i in range(0, len(transitionTable)):
+        if transitionTable[i][0] >= 2:
+            oldFinalState.append(transitionTable[i][1])
+
+    # storing all states that thank's to empty word transition or thank's to normal transition can reach an exit
+    
+    oldFinalState_empty=[]
+    # initializing the list with all the final states
+    for i in oldFinalState:
+        oldFinalState_empty.append(i)
+
+    bool_=True
+    # the loop stop when we didn't find an other state that could reach a final state
+    while bool_:
+        bool_=False
+        for i in range(0, len(transitionTable)):
+            if transitionTable[i][1] not in oldFinalState_empty:
+                # if a state from oldFinalState is in the empty word transition of a state we add it to oldFinalState
+                for state in oldFinalState_empty:
+                    if get_index(transitionTable, state) in transitionTable[i][-1]:
+                        bool_=True
+                        oldFinalState_empty.append(transitionTable[i][1])
+
+    # setting all the states that have an old final state in its name as a final state
+    for i in range(len(newTransitionTable)):
+        for newExit in oldFinalState_empty:
+            if newExit in newTransitionTable[i][1] and newTransitionTable[i][0] < 2:
+                newTransitionTable[i][0] += 2
+
+    return newTransitionTable
+
 
 def standardization(transitionTable):
     if is_standard(transitionTable):
@@ -85,69 +148,13 @@ def standardization(transitionTable):
 
     return transitionTable
 
-
-def determinization(transitionTable):
-    if is_deterministic(transitionTable):
-        return transitionTable
-    newTransitionTable = []
-    # list that store all the new names of the new states
-    # the index of the names in names will correspond to the index of the line of this state in newTransitionTable
-    names = []
-
-    # put all old entries into the list oldInitialState
-    oldInitialState = []
-    for i in range(0, len(transitionTable)):
-        if transitionTable[i][0] % 2 == 1:
-            oldInitialState.append(i)
-    # calling fill table with all the initial states
-    fill_table(newTransitionTable, transitionTable, names, oldInitialState)
-    # setting the entry
-    newTransitionTable[0][0] = 1
-    
-    # calling fill table for all names in names
-    for name in names:
-        if name not in [line[1] for line in newTransitionTable]:
-            fill_table(newTransitionTable, transitionTable, names, list(map(lambda x: get_index(transitionTable,x), get_all_index_name(name))))
-    
-    # storing all final states in the list oldFinalState
-    oldFinalState = []
-    for i in range(0, len(transitionTable)):
-        if transitionTable[i][0] >= 2:
-            oldFinalState.append(transitionTable[i][1])
-
-    # storing all states that thank's to empty word transition or thank's to normal transition can reach an exit
-    oldFinalState_empty=[]
-    # initializing the list with all the final states
-    for i in oldFinalState:
-        oldFinalState_empty.append(i)
-
-    bool_=True
-    # the loop stop when we didn't find an other state that could reach a final state
-    while bool_:
-        bool_=False
-        for i in range(0, len(transitionTable)):
-            if transitionTable[i][1] not in oldFinalState_empty:
-                # if a state from oldFinalState is in the empty word transition of a state we add it to oldFinalState
-                for state in oldFinalState_empty:
-                    if get_index(transitionTable, state) in transitionTable[i][-1]:
-                        bool_=True
-                        oldFinalState_empty.append(transitionTable[i][1])
-
-    # setting all the states that have an old final state in its name as a final state
-    for i in range(len(newTransitionTable)):
-        for newExit in oldFinalState_empty:
-            if newExit in newTransitionTable[i][1] and newTransitionTable[i][0] < 2:
-                newTransitionTable[i][0] += 2
-
-    return newTransitionTable
-
 def completion(transitionTable):
     if is_complete(transitionTable):
         return transitionTable
 
     if not is_deterministic(transitionTable):
         transitionTable=determinization(transitionTable)
-
+        
     # adding the transition to the sink where the state dont have a transition for a letter of the alphabet
     for i in range(len(transitionTable)):
         for transi in range(2, len(transitionTable[i])-1):
