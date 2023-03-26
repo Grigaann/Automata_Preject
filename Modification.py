@@ -1,4 +1,5 @@
 from Verification import *
+from UsefulFunction import get_index
 
 def get_transitions(allTransition, transitionTable, listState, vuEmpty):
     """
@@ -178,5 +179,64 @@ def complentary(transitionTable):
     for i in range(len(transitionTable)):
         if transitionTable[i][0]>=2:transitionTable[i][0]-=2
         else:transitionTable[i][0]+=2
+
+    return transitionTable
+
+def minimization(transitionTable):
+    """
+    To minimize an automaton we need:
+        - it is complete
+        - it is deterministic
+        - to gateher non_final_state and final state and compare them respectively
+    
+    """
+    if not is_complete(transitionTable):
+        transitionTable = completion(transitionTable)
+
+    if not is_deterministic(transitionTable):
+        transitionTable = determinization(transitionTable)
+
+    finalState = []
+    nonFinalState = []
+    
+    check_condition = False
+
+    cpt= 0
+
+    for i in range(0, len(transitionTable)):
+        if transitionTable[i][0] == 1 or transitionTable[i][0] == 0:
+            nonFinalState.append(transitionTable[i][1])
+        else:
+            finalState.append(transitionTable[i][1])
+        cpt+=1
+
+    tempTransition = []
+    listNewTransitions = []
+
+    for i in range(0, len(transitionTable)):
+        for y in range(2, len(transitionTable)-1):
+            if transitionTable[i][0] == 1 or transitionTable[i][0] == 0:
+                [tempTransition.append(transitionTable[i][y])]
+            else:
+                [tempTransition.append(transitionTable[i][y])]
+
+    globalListe= [finalState,nonFinalState]
+
+    #while not check_condition:
+        #for i in range(0, len(globalListe)):
+        #for j in range(0, len(globalListe[i])):
+
+    nb_ligne = cpt+4
+
+    for a in range(0,nb_ligne,2):
+        listNewTransitions.append([transitionTable[tempTransition[a][0]][1],transitionTable[tempTransition[a+1][0]][1]])
+
+    print(listNewTransitions)
+    temporary_list = []
+
+    for i in range(0, len(globalListe)):
+        for j in range(0,len(globalListe[i])):
+            temporary_list.append(get_index(transitionTable, globalListe[i][j]))
+    print("Temporary_list: ", temporary_list)
 
     return transitionTable

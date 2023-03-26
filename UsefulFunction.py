@@ -24,3 +24,4 @@ def get_name(listState, transitionTable):
         if len(transitionTable[get_index(transitionTable, name)][-1])>0:
             return "'".join(listState)+"'"
     return "_".join(listState)
+    

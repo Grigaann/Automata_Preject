@@ -110,6 +110,10 @@ else:
                 automaton=complentary(automaton)
                 display(automaton,writeInText)
 
+            if answer==8:
+                print("\nComplement ==================================================================================")
+                automaton=minimization(automaton)
+
             if answer==7:
                 word = str(input("Enter a word to be checked by the automaton : "))
                 if word == "":
