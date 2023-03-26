@@ -251,7 +251,6 @@ def minimization(transitionTable):
     # creating the new transition table
     for i, group in enumerate(globalList):
         name=str(i)
-        if "p" in group: name="p"
         newLine=[0, name]
         # adding the transitions
         for z in range(2, len(transitionTable[0])):
