@@ -1,4 +1,5 @@
 from Prerequisites import *
+from Modification import *
 import random
 
 debugger_mode = safe_input("Enter 1 if you want to create the execution traces or 0 if you want to use an automaton : ", 0,1)

@@ -1,4 +1,4 @@
-from Modification import *
+from UsefulFunction import *
 
 def display(automaton,writeInText,fileName=""):
     alphabet = [chr(ord('a')+k) for k in range(len(automaton[0][2:]))]
