@@ -242,7 +242,9 @@ def minimization(transitionTable):
     newTransitionTable=[]
 
     for i, group in enumerate(globalList):
-        newLine=[0, str(i)]
+        name=str(i)
+        if "p" in group: name="p"
+        newLine=[0, name]
         
         for z in range(2, len(transitionTable[0])):
             transi1=transitionTable[get_index(transitionTable,group[0])][z]
@@ -256,6 +258,7 @@ def minimization(transitionTable):
             elif transitionTable[get_index(transitionTable, state)][0]==1 and type_%2==0:type_+=1
             elif transitionTable[get_index(transitionTable, state)][0]==2 and type_==0 or type_==1:type_+=2
         newLine[0]=type_
+        if type_%2==1: newLine[1]="i"
 
         newTransitionTable.append(newLine)
 
