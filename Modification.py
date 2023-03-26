@@ -198,6 +198,7 @@ def minimization(transitionTable):
     if not is_deterministic(transitionTable):
         transitionTable = determinization(transitionTable)
 
+    # initializing our to first groups
     finalState = []
     nonFinalState = []
 
@@ -207,11 +208,14 @@ def minimization(transitionTable):
         else:
             finalState.append(transitionTable[i][1])
 
+    # liste containing the groups
     globalList= [finalState,nonFinalState]
-    bool_=True
-    while bool_:
+
+    change=True
+    while change:
         newGlobalList = []
-        bool_=False
+        change=False
+        # for each group we compare the transitions of the states to group them again
         for i, group in enumerate(globalList):
             temp_group=[]
             for state in group:
@@ -221,6 +225,8 @@ def minimization(transitionTable):
                     is_added=False
                     for group in temp_group:
                         bool___=True
+                        # if at least one of the transitions from one state of the group compared to the state state
+                        # go to a different group we don't add the state to the group
                         for z in range(2,len(transitionTable[0])-1):
                             transi1=transitionTable[get_index(transitionTable,state)][z]
                             transi2=transitionTable[get_index(transitionTable,group[0])][z]
@@ -232,28 +238,30 @@ def minimization(transitionTable):
                         if bool___:
                             group.append(state)
                             is_added=True
+                    # if the state is not added to any group we create a new group with itself
                     if not is_added:
                         temp_group.append([state])
             for g in temp_group:
                 newGlobalList.append(g)
-        bool_= globalList!=newGlobalList
+        change= globalList!=newGlobalList
         globalList=newGlobalList
 
     newTransitionTable=[]
-
+    
+    # creating the new transition table
     for i, group in enumerate(globalList):
         name=str(i)
         if "p" in group: name="p"
         newLine=[0, name]
-        
+        # adding the transitions
         for z in range(2, len(transitionTable[0])):
             transi1=transitionTable[get_index(transitionTable,group[0])][z]
             if len(transi1)==0: newLine.append([])
             else:newLine.append([_get_number_group(globalList, transitionTable[transi1[0]][1])])
         
+        # setting the type of the state
         type_=0
         for state in group:
-
             if transitionTable[get_index(transitionTable, state)][0]==3:type_=3
             elif transitionTable[get_index(transitionTable, state)][0]==1 and type_%2==0:type_+=1
             elif transitionTable[get_index(transitionTable, state)][0]==2 and type_==0 or type_==1:type_+=2
