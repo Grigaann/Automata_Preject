@@ -112,3 +112,17 @@ def print_(file, writeInText, msg, end="\n"):
             f.write(msg+end)
     else:
         print(msg, end=end)
+
+def safe_input(sentence, min_, max_):
+    """
+    Ask the user to input a number between min_ and max_ included
+    """
+    while True:
+        try:
+            x = int(input(sentence))
+            if x < min_ or x > max_:
+                print("The number must be between", min_, "and", max_)
+            else:
+                return x
+        except ValueError:
+            print("The input must be a number")

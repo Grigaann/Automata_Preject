@@ -40,11 +40,19 @@ Complement =====================================================================
                   1'|                2|               3'|
                 3'6'|                p|             3'5'|
 <--                p|                p|                p|
-The empty word is not recognized.
+
+Minimization ==================================================================================
+                    |________a________|________b________|
+<--                0|                3|                2|
+<--                1|                1|                1|
+<->                2|                0|                3|
+                   3|                1|                3|
+
+The empty word is recognized.
 The word : a is recognized.
 The word : b is not recognized...
 The word : c is not recognized...
-The word : ab is not recognized...
+The word : ab is recognized.
 The word : ba is recognized.
 The word : bc is not recognized...
 The word : cb is not recognized...

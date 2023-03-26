@@ -7,6 +7,7 @@ def get_index(transitionTable, name):
     for i in range(len(transitionTable)):
         if transitionTable[i][1]==name:
             return i
+    print(name)
         
 def get_all_index_name(name):
     """get all the index (in the basic transition table) of the state of name name"""

@@ -150,12 +150,12 @@ def standardization(transitionTable):
     return transitionTable
 
 def completion(transitionTable):
-    if is_complete(transitionTable):
-        return transitionTable
-
     if not is_deterministic(transitionTable):
         transitionTable=determinization(transitionTable)
         
+    if is_complete(transitionTable):
+        return transitionTable
+
     # adding the transition to the sink where the state dont have a transition for a letter of the alphabet
     for i in range(len(transitionTable)):
         for transi in range(2, len(transitionTable[i])-1):
@@ -182,6 +182,11 @@ def complentary(transitionTable):
 
     return transitionTable
 
+def _get_number_group(globalList, state):
+    for i, group in enumerate(globalList):
+        if state in group: 
+            return i
+
 def minimization(transitionTable):
     """
     To minimize an automaton we need:
@@ -190,53 +195,68 @@ def minimization(transitionTable):
         - to gateher non_final_state and final state and compare them respectively
     
     """
-    if not is_complete(transitionTable):
-        transitionTable = completion(transitionTable)
-
     if not is_deterministic(transitionTable):
         transitionTable = determinization(transitionTable)
 
     finalState = []
     nonFinalState = []
-    
-    check_condition = False
-
-    cpt= 0
 
     for i in range(0, len(transitionTable)):
-        if transitionTable[i][0] == 1 or transitionTable[i][0] == 0:
+        if transitionTable[i][0]<=1:
             nonFinalState.append(transitionTable[i][1])
         else:
             finalState.append(transitionTable[i][1])
-        cpt+=1
 
-    tempTransition = []
-    listNewTransitions = []
+    globalList= [finalState,nonFinalState]
+    bool_=True
+    while bool_:
+        newGlobalList = []
+        bool_=False
+        for i, group in enumerate(globalList):
+            temp_group=[]
+            for state in group:
+                if len(temp_group)==0:
+                    temp_group.append([state])
+                else:
+                    is_added=False
+                    for group in temp_group:
+                        bool___=True
+                        for z in range(2,len(transitionTable[0])-1):
+                            transi1=transitionTable[get_index(transitionTable,state)][z]
+                            transi2=transitionTable[get_index(transitionTable,group[0])][z]
+                            if len(transi1)==0 and len(transi2)!=0 or len(transi1)!=0 and len(transi2)==0:
+                                bool___=False
+                            elif len(transi1)!=0 and len(transi2)!=0:
+                                if _get_number_group(globalList, transitionTable[transi1[0]][1])!=_get_number_group(globalList, transitionTable[transi2[0]][1]):
+                                    bool___=False
+                        if bool___:
+                            group.append(state)
+                            is_added=True
+                    if not is_added:
+                        temp_group.append([state])
+            for g in temp_group:
+                newGlobalList.append(g)
+        bool_= globalList!=newGlobalList
+        globalList=newGlobalList
 
-    for i in range(0, len(transitionTable)):
-        for y in range(2, len(transitionTable)-1):
-            if transitionTable[i][0] == 1 or transitionTable[i][0] == 0:
-                [tempTransition.append(transitionTable[i][y])]
-            else:
-                [tempTransition.append(transitionTable[i][y])]
+    newTransitionTable=[]
 
-    globalListe= [finalState,nonFinalState]
+    for i, group in enumerate(globalList):
+        newLine=[0, str(i)]
+        
+        for z in range(2, len(transitionTable[0])):
+            transi1=transitionTable[get_index(transitionTable,group[0])][z]
+            if len(transi1)==0: newLine.append([])
+            else:newLine.append([_get_number_group(globalList, transitionTable[transi1[0]][1])])
+        
+        type_=0
+        for state in group:
 
-    #while not check_condition:
-        #for i in range(0, len(globalListe)):
-        #for j in range(0, len(globalListe[i])):
+            if transitionTable[get_index(transitionTable, state)][0]==3:type_=3
+            elif transitionTable[get_index(transitionTable, state)][0]==1 and type_%2==0:type_+=1
+            elif transitionTable[get_index(transitionTable, state)][0]==2 and type_==0 or type_==1:type_+=2
+        newLine[0]=type_
 
-    nb_ligne = cpt+4
+        newTransitionTable.append(newLine)
 
-    for a in range(0,nb_ligne,2):
-        listNewTransitions.append([transitionTable[tempTransition[a][0]][1],transitionTable[tempTransition[a+1][0]][1]])
-
-    print(listNewTransitions)
-    temporary_list = []
-
-    for i in range(0, len(globalListe)):
-        for j in range(0,len(globalListe[i])):
-            temporary_list.append(get_index(transitionTable, globalListe[i][j]))
-    print("Temporary_list: ", temporary_list)
-
-    return transitionTable
+    return newTransitionTable
